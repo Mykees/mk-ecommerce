@@ -1,11 +1,11 @@
 # mk-ecommerce
 
-An ecommerce project built with sf5 just for practice.
+An ecommerce project built with sf5.
 
 
-I will use several technologies like rabbitmq, jelastic, apiplatform, redis, react components...
+I will use several technologies like rabbitmq, apiplatform, redis, react components, stripe...
 
-Maybe using all these technologies is a bit overkill but it's just for fun :)
+Maybe using some of these technologies is a bit overkill but it's just for fun :)
 
 ## Status : WIP
 
