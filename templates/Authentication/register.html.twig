@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+    <h1 class="display-4 mb-4">S'inscrire</h1>
+    {% if not form.vars.valid %}
+    <ul>
+        {# Loop through every form item #}
+        {% for child in form.children %}
+            {# Display the errors of the form item #}
+            {%for error in child.vars.errors%}
+                <li>
+                    {{ error.origin.config.name }} : {{error.message}}
+                </li>
+            {%endfor%}
+        {%endfor%}
+        {% if(form.password.first.vars.errors.current.message) %}
+            <li>Les mots de passe ne correspondent pas</li>
+        {% endif %}
+    </ul>
+    {%endif%}
+
+
+    {{ form_start(form) }}
+
+        {{ form_label(form.email, 'Email:', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control mb-3'}}) }}
+        {# {{ form_errors(form.email, {'attr': {'class': 'invalid-feedback'}}) }} #}
+
+        {{ form_label(form.password.first, 'Mot de passe:', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.password.first, {'attr': {'class': 'form-control mb-3'}}) }}
+        {# {{ form_errors(form.password.first, {'attr': {'class': 'invalid-feedback'}}) }} #}
+
+        {{ form_label(form.password.second, 'Confirmer le mot de passe:', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.password.second, {'attr': {'class': 'form-control mb-3'}}) }}
+
+        <button class="btn btn-primary" type="submit">S'inscrire</button>
+
+    {{ form_end(form) }}
+
+{% endblock %}
