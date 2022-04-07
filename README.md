@@ -17,6 +17,20 @@ Maybe using some of these technologies is a bit overkill but it's just for fun :
 
 
 ### Launch project :
+- 
+- Composer :
+```
+composer install
+```
+
+- assets :
+```
+yarn install
+```
+```
+yarn run dev
+```
+
 - Start docker :
 ```
 docker-compose up -d
