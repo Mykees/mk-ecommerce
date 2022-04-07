@@ -1,0 +1,11 @@
+{% extends "admin.html.twig" %}
+
+
+{% block body %}
+
+    {#{{ dump(app.user) }}#}
+    <h2 class="fw-light">{{ page is defined ? page : "Page d'index" }}</h2>
+
+    {% include "Admin/Product/Form/form.html.twig" %}
+
+{% endblock %}

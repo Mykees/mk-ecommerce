@@ -1,0 +1,46 @@
+<div class="container mt-5">
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-8">
+            {{ form_label(form.name, 'Nom :', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_row(form.name, {'attr': {'class': 'form-control mb-4'}}) }}
+
+
+
+            {{ form_label(form.price, 'Prix :', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_row(form.price, {'attr': {'class': 'form-control mb-4'}}) }}
+
+
+
+            {{ form_label(form.excerpt, 'Courte description :', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_row(form.excerpt, {'attr': {'class': 'form-control mb-4'}}) }}
+
+
+
+            {{ form_label(form.description, 'Description :', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_row(form.description, {'attr': {'class': 'form-control mb-4'}}) }}
+
+
+
+            <div class="form-check form-switch mb-4">
+                {{ form_row(form.online, {'attr': {'class': 'form-check-input'}}) }}
+                {{ form_label(form.online, 'En ligne', {'label_attr': {'class': 'form-check-label'}}) }}
+            </div>
+
+            <button class="btn btn-success btn-lg btn-register" type="submit">Enregistrer</button>
+
+        </div>
+
+        <div class="col-4">
+            {{ form_label(form.dlimage, 'Image :', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_row(form.dlimage, {'attr': {'class': 'form-control mb-4'}}) }}
+
+            {{ form_label(form.category, 'Categorie :', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_row(form.category, {'attr': {'class': 'form-select mb-4'}}) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+
+</div>

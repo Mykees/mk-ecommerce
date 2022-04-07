@@ -1,14 +1,9 @@
-{% extends "base.html.twig" %}
+{% extends "admin.html.twig" %}
 
 
 {% block body %}
 
-{{ dump(app.user) }}
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Administration: Page d'index</h1>
-      </div>
-    </div>
-
+{#{{ dump(app.user) }}#}
+    <h2 class="fw-light">{{ page is defined ? page : "Page d'index" }}</h2>
 
 {% endblock %}

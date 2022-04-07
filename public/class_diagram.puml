@@ -1,0 +1,62 @@
+@startuml
+
+package "Ecommerce" #FFF {
+
+    class Product {
+        {field} id: int
+        {field} name: string
+        {field} slug: string
+        {field} price: float
+        {field} image: string
+        {field} excerpt: string
+        {field} description: text
+        {field} category: int
+    }
+    class Category {
+        {field} id: int
+        {field} name: string
+        {field} slug: string
+    }
+    class Tag {
+        {field} id: int
+        {field} name: string
+        {field} slug: string
+    }
+    class TagRelation {
+        {field} id: int
+        {field} tag_id: int
+        {field} entity_id: int
+        {field} entity_name: string
+    }
+
+
+    class User {
+        {field} id: int
+        {field} email: string
+        {field} role: json
+        {field} password: string
+    }
+    class Customer {
+        {field} id: int
+        {field} name: string
+        {field} email: string
+        {field} street_number: int
+        {field} street_name: string
+        {field} country: string
+        {field} zipcode: string
+        {field} password: string
+        {field} role: json
+        {field} created_at: datetime
+        {field} updated_at: datetime
+    }
+
+
+    ' Chaque PRODUCT peut appartenir à une CATEGORY
+    ' Chaque CATEGORY peut être reliées à plusieurs PRODUCT
+    Product "Many" *-- "One" Category: To
+
+
+
+}
+
+@enduml

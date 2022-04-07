@@ -59,7 +59,7 @@ class UserTest extends KernelTestCase {
     }
 
 
-    public function testInvalidExistingUser () {
+    public function testInvalidAlreadyExistUser () {
         $this->databaseTool->loadFixtures([UserFixtures::class]);
         $this->assertHasErrors($this->getUserEntity()->setEmail("user1@domain.com"), 1);
     }
