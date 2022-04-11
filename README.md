@@ -14,6 +14,7 @@ Maybe using some of these technologies is a bit overkill but it's just for fun :
 
 - Unit tests & functional tests for Users
 - Unit tests & functional tests for Products
+- Unit tests & functional tests for Categories
 
 
 ### Launch project :
