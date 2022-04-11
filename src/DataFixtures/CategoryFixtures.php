@@ -16,6 +16,8 @@ class CategoryFixtures extends Fixture
             $category = (new Category())
                 ->setName("Category".$i)
                 ->setSlug("category".$i)
+                ->setCreatedAt(new \DateTime())
+                ->setOnline(true)
             ;
             $manager->persist($category);
             $manager->flush();

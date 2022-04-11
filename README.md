@@ -49,9 +49,14 @@ docker exec -it ec-php bash
 php bin/console doctrine:database:create --env=test
 ```
 ```
-php bin/console doctrine:schema:update --env=test
+php bin/console doctrine:schema:update --env=test --force
 ```
 - start : 
 ```
 php bin/phpunit
+```
+
+### Generate Test Coverage :
+```
+XDEBUG_MODE=coverage php bin/phpunit --coverage-html var/log/test/test-coverage
 ```
