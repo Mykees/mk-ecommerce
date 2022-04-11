@@ -13,6 +13,10 @@ RUN  apt-get install git unzip wait-for-it wget libicu-dev -y && \
         docker-php-ext-install intl pdo_mysql && \
         echo 'extension=intl.so' > /usr/local/etc/php/conf.d/docker-php-ext-intl.ini
 
+RUN pecl install xdebug-3.1.3 \
+    && docker-php-ext-enable xdebug \
+    && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git \

@@ -8,10 +8,7 @@ use App\Repository\ProductRepository;
 use App\Services\Upload;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormRegistry;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,6 +47,8 @@ class ProductController extends AbstractController
      * @Route("/create", methods={"GET|POST"},name="admin_product_create")
      * @param Request $request
      * @param ManagerRegistry $doctrine
+     * @param Upload $uploader
+     * @param SluggerInterface $slugger
      * @return void
      */
     public function create (Request $request, ManagerRegistry $doctrine, Upload $uploader, SluggerInterface $slugger): Response {

@@ -30,8 +30,18 @@ class ProductControllerTest extends WebTestCase
         $this->databaseTool = static::getContainer()->get(DatabaseToolCollection::class)->get('default');
     }
 
+    public function testProductListPage() {
+        $this->databaseTool->loadFixtures([UserFixtures::class]);
+        //On connect l'admin
+        $userAdmin = self::getContainer()->get(UserRepository::class)->findOneBy(['email'=>self::ADMIN_USER_EMAIL]);
+        $this->client->loginUser($userAdmin);
 
-    public function testUploadImage(){
+        $this->client->request('GET','/admin/product/');
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+    }
+
+    public function testCreateProduct(){
         $this->databaseTool->loadFixtures([UserFixtures::class]);
         //On connect l'admin
         $userAdmin = self::getContainer()->get(UserRepository::class)->findOneBy(['email'=>self::ADMIN_USER_EMAIL]);
@@ -207,5 +217,26 @@ class ProductControllerTest extends WebTestCase
         $this->client->submit($form);
 
         $this->assertSelectorTextContains('h2', "Edition d'un produit");
+    }
+
+
+    public function testDeleteProduct() {
+        $this->databaseTool->loadFixtures([UserFixtures::class,ProductFixtures::class]);
+        //On connect l'admin
+        $userAdmin = self::getContainer()->get(UserRepository::class)->findOneBy(['email'=>self::ADMIN_USER_EMAIL]);
+        $this->client->loginUser($userAdmin);
+
+
+        $crawler = $this->client->request('GET','/admin/product/');
+        $form = $crawler->selectButton("button-delete-1")->form();
+        $this->client->submit($form);
+
+        $this->assertResponseRedirects('/admin/product/');
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
+
+        $products = self::getContainer()->get(ProductRepository::class)->findAll();
+        $countProducts = count($products);
+
+        $this->assertEquals(9, $countProducts);
     }
 }

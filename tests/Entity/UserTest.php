@@ -43,7 +43,6 @@ class UserTest extends KernelTestCase {
     }
 
 
-
     public function testValidUser () {
 
         $this->assertHasErrors($this->getUserEntity(), 0);
@@ -69,11 +68,12 @@ class UserTest extends KernelTestCase {
         $this->assertHasErrors($this->getUserEntity()->setPassword(""), 2);
     }
 
-    public function testValidLenghtUserPassword () {
+    public function testValidLengthUserPassword () {
         $this->assertHasErrors($this->getUserEntity()->setPassword("wwwwwwwwww"), 0);
     }
 
     public function testInvalidLengthUserPassword () {
         $this->assertHasErrors($this->getUserEntity()->setPassword("www"), 1);
     }
+
 }

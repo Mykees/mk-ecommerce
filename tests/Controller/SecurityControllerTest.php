@@ -6,9 +6,11 @@ use App\DataFixtures\UserFixtures;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
+use Symfony\Component\HttpFoundation\Response;
 
 class SecurityControllerTest extends WebTestCase {
 
+    const ADMIN_USER_EMAIL = "user0@domain.com";
 
     public function testDisplayLoginPage () {
         $client = static::createClient();
@@ -79,6 +81,25 @@ class SecurityControllerTest extends WebTestCase {
         
         $this->assertEquals('newUser@domain.com',$user[0]->getEmail());
         $this->assertEquals(11, $users);
+    }
+
+
+    public function testLogoutUser() {
+        $client = static::createClient();
+        $databaseTool = static::getContainer()->get(DatabaseToolCollection::class)->get('default');
+        $databaseTool->loadFixtures([UserFixtures::class]);
+
+        $user = self::getContainer()->get(UserRepository::class)->findOneBy(['email'=>self::ADMIN_USER_EMAIL]);
+
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET','/admin');
+        $linkCrawler = $crawler->selectLink('Sign out')->link();
+        $client->click($linkCrawler);
+
+
+        $this->assertResponseRedirects('http://localhost/');
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
     }
     
 }
